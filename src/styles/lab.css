@@ -1,0 +1,325 @@
+/* ==========================================================================
+   TERRA — SECTION 5: INTERACTIVE PARALLAX LAB STYLES
+   Interactive Multi-Plane Viewport, 3D Depth Tracking, Biome Scanner Reticle
+   ========================================================================== */
+
+.section-lab {
+  position: relative;
+  width: 100%;
+  min-height: 120vh;
+  background-color: var(--color-charcoal-deep);
+  padding: var(--space-4xl) 0;
+  overflow: hidden;
+}
+
+.lab-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Controls Bar at the Top of the Lab */
+.lab-controls-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  background-color: rgba(23, 25, 20, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.control-label {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.12em;
+  color: var(--color-cream-subtle);
+}
+
+.button-toggle-row {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-toggle {
+  background-color: rgba(242, 233, 216, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--color-cream-subtle);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.06em;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--duration-fast);
+}
+
+.btn-toggle:hover {
+  background-color: rgba(242, 233, 216, 0.1);
+  color: var(--color-cream-warm);
+}
+
+.btn-toggle.active {
+  background-color: var(--color-terracotta);
+  border-color: var(--color-terracotta);
+  color: var(--color-cream-warm);
+  box-shadow: 0 0 12px rgba(216, 91, 50, 0.4);
+}
+
+.btn-explore {
+  padding: 10px 22px;
+  font-size: 0.78rem;
+}
+
+/* Interactive Viewport Stage */
+.interactive-stage-viewport {
+  position: relative;
+  width: 100%;
+  height: 560px;
+  background-color: #12140F;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: crosshair;
+  perspective: 1000px;
+  box-shadow: var(--shadow-elevated);
+  outline: none;
+}
+
+.interactive-stage-viewport:focus-visible {
+  border-color: var(--color-terracotta);
+}
+
+/* Multi-depth Layers inside the Viewport */
+.lab-stage-layer {
+  position: absolute;
+  top: -15%;
+  left: -15%;
+  width: 130%;
+  height: 130%;
+  pointer-events: none;
+  will-change: transform;
+  transition: transform 0.08s ease-out;
+}
+
+/* Layer 0: Sky Atmosphere */
+.lab-sky-gradient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, #2A3221 0%, #171914 75%);
+  transition: background 0.8s ease;
+}
+
+/* Illumination Themes */
+.theme-dawn .lab-sky-gradient {
+  background: radial-gradient(circle at 45% 65%, #6A5638 0%, #2D3325 55%, #171914 90%);
+}
+
+.theme-meridian .lab-sky-gradient {
+  background: radial-gradient(circle at 50% 25%, #465337 0%, #242B1B 65%, #141710 100%);
+}
+
+.theme-sunset .lab-sky-gradient {
+  background: radial-gradient(circle at 60% 45%, #6D341D 0%, #302A1E 50%, #171914 90%);
+}
+
+.theme-charcoal .lab-sky-gradient {
+  background: radial-gradient(circle at 50% 40%, #1E211A 0%, #151712 60%, #0D0E0B 100%);
+}
+
+/* Layer 1: Sun / Celestial Body */
+.lab-layer-sun {
+  z-index: 2;
+}
+
+.lab-sun-disc {
+  position: absolute;
+  top: 30%;
+  left: 60%;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #F2E9D8 0%, #D85B32 70%);
+  box-shadow: 0 0 50px rgba(216, 91, 50, 0.45);
+  transition: transform 0.8s ease, background 0.8s ease;
+}
+
+.theme-charcoal .lab-sun-disc {
+  background: radial-gradient(circle at 35% 35%, #F2E9D8 0%, #8A9B72 80%);
+  box-shadow: 0 0 40px rgba(138, 155, 114, 0.3);
+}
+
+/* Layer 2: Distant Ridge */
+.lab-layer-far-ridge {
+  z-index: 3;
+}
+
+.lab-svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  object-fit: fill;
+}
+
+/* Layer 3: Mist */
+.lab-layer-mist {
+  z-index: 4;
+}
+
+.lab-mist-layer {
+  position: absolute;
+  bottom: 25%;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(180deg, transparent, rgba(198, 231, 90, 0.06), transparent);
+  filter: blur(16px);
+}
+
+/* Layer 4: Architecture */
+.lab-layer-architecture {
+  z-index: 5;
+}
+
+/* Layer 5: Forest & Valley */
+.lab-layer-forest {
+  z-index: 6;
+}
+
+/* Layer 6: Foreground Rocks */
+.lab-layer-foreground {
+  z-index: 7;
+}
+
+/* Biome Focus Scanner (Mouse tracking reticle) */
+.biome-lens {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 1px dashed rgba(198, 231, 90, 0.6);
+  pointer-events: none;
+  z-index: 20;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lens-crosshair-h {
+  position: absolute;
+  left: -15px;
+  right: -15px;
+  height: 1px;
+  background-color: rgba(198, 231, 90, 0.4);
+}
+
+.lens-crosshair-v {
+  position: absolute;
+  top: -15px;
+  bottom: -15px;
+  width: 1px;
+  background-color: rgba(198, 231, 90, 0.4);
+}
+
+.lens-ring {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-lime-acid);
+  box-shadow: 0 0 10px rgba(198, 231, 90, 0.4);
+}
+
+.lens-telemetry {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(23, 25, 20, 0.88);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  white-space: nowrap;
+  box-shadow: var(--shadow-subtle);
+}
+
+.lt-title {
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.14em;
+  color: var(--color-terracotta);
+}
+
+.lt-coords {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  color: var(--color-lime-acid);
+  font-feature-settings: "tnum";
+}
+
+.lt-stratum {
+  font-size: 0.62rem;
+  color: var(--color-cream-subtle);
+  letter-spacing: 0.08em;
+}
+
+/* Stage Interaction Prompt Badge */
+.stage-interaction-prompt {
+  position: absolute;
+  bottom: 18px;
+  left: 20px;
+  background-color: rgba(23, 25, 20, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-subtle);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: var(--color-cream-subtle);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.prompt-icon {
+  color: var(--color-terracotta);
+  font-size: 0.8rem;
+}
+
+/* Responsive adjustments for Section 5 */
+@media (max-width: 900px) {
+  .lab-controls-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .interactive-stage-viewport {
+    height: 420px;
+  }
+}

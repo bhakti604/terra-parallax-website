@@ -1,0 +1,304 @@
+/* ==========================================================================
+   TERRA — BASE & UTILITY STYLES
+   Reset, Base Typography, Custom Cursor, Film Grain, Global Elements
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-charcoal-deep);
+  color: var(--color-cream-warm);
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: var(--fw-normal);
+  line-height: 1.6;
+  background-color: var(--color-charcoal-deep);
+  color: var(--color-cream-warm);
+  position: relative;
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-lime-acid) !important;
+  outline-offset: 3px !important;
+}
+
+/* Accessible Skip Link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 20px;
+  background-color: var(--color-terracotta);
+  color: var(--color-cream-warm);
+  padding: 12px 24px;
+  font-weight: var(--fw-semibold);
+  font-size: 0.9rem;
+  z-index: 10000;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: top var(--duration-fast) var(--ease-editorial);
+}
+
+.skip-link:focus {
+  top: 20px;
+}
+
+/* Subtle Film Grain Texture Overlay */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.038;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Scroll Progress Bar at the very top */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-terracotta), var(--color-lime-acid));
+  z-index: 1001;
+  transition: width 0.1s linear;
+}
+
+/* Custom Cursor (Only on Desktop with Fine Pointer) */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: default;
+  }
+
+  .cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-cream-warm);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+  }
+
+  .cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(242, 233, 216, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.12s ease-out, width 0.25s, height 0.25s, border-color 0.25s, background-color 0.25s;
+  }
+
+  body.cursor-hover .cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-lime-acid);
+  }
+
+  body.cursor-hover .cursor-ring {
+    width: 52px;
+    height: 52px;
+    border-color: var(--color-terracotta);
+    background-color: rgba(216, 91, 50, 0.08);
+  }
+}
+
+@media (hover: none) or (pointer: coarse) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+}
+
+/* Reusable UI Components */
+
+/* Primary Button (Terracotta Highlight) */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background-color: var(--color-terracotta);
+  color: var(--color-cream-warm);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  border: 1px solid var(--color-terracotta);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background-color var(--duration-normal) var(--ease-editorial),
+              transform var(--duration-fast) var(--ease-editorial),
+              box-shadow var(--duration-normal) var(--ease-editorial);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-terracotta-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(216, 91, 50, 0.35);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-primary .btn-arrow {
+  display: inline-block;
+  font-size: 1.1rem;
+  transition: transform var(--duration-normal) var(--ease-editorial);
+}
+
+.btn-primary:hover .btn-arrow {
+  transform: translateY(3px);
+}
+
+/* Secondary Button (Charcoal / Cream Border) */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: transparent;
+  color: var(--color-cream-warm);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--duration-normal) var(--ease-editorial),
+              border-color var(--duration-normal) var(--ease-editorial),
+              color var(--duration-normal) var(--ease-editorial);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-cream-faint);
+  border-color: var(--color-cream-muted);
+  color: var(--color-cream-warm);
+}
+
+/* Pill Icon Button (Header Toggles) */
+.btn-icon-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(242, 233, 216, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--color-cream-warm);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.08em;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-editorial);
+}
+
+.btn-icon-pill:hover {
+  background-color: rgba(242, 233, 216, 0.1);
+  border-color: rgba(242, 233, 216, 0.25);
+}
+
+.pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-cream-muted);
+  transition: background-color var(--duration-fast);
+}
+
+.pill-dot.active {
+  background-color: var(--color-lime-acid);
+  box-shadow: 0 0 8px var(--color-lime-acid);
+}
+
+/* Section Editorial Badge */
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: var(--space-md);
+  padding: 6px 14px;
+  background-color: rgba(242, 233, 216, 0.05);
+  border-left: 2px solid var(--color-terracotta);
+}
+
+.badge-index {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-terracotta);
+}
+
+.badge-name {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-cream-subtle);
+}
+
+/* Typography Helpers */
+.text-terracotta {
+  color: var(--color-terracotta) !important;
+}
+
+.accent-terracotta {
+  color: var(--color-terracotta);
+}
+
+.accent-cream {
+  color: var(--color-cream-warm);
+}
+
+.w-full {
+  width: 100%;
+}
+
+.mt-2 {
+  margin-top: 8px;
+}
+
+/* Reduced Motion Mode Global State */
+body[data-motion="disabled"] * {
+  animation: none !important;
+  transition-duration: 0.001s !important;
+  scroll-behavior: auto !important;
+}

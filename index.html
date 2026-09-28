@@ -1,0 +1,1005 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TERRA — Beyond the Surface | Interactive Parallax Journey</title>
+    <meta name="description" content="An immersive visual and parallax journey through the layers of a living planet, from primordial mountain peaks and ancient forests to the biophilic cities of tomorrow." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body class="theme-charcoal" data-motion="enabled">
+    <!-- Screen Reader Skip Link -->
+    <a href="#hero" class="skip-link">Skip to main content</a>
+
+    <!-- Custom Cursor (Desktop) -->
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+    <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+    <!-- Grain Overlay -->
+    <div class="grain-overlay" aria-hidden="true"></div>
+
+    <!-- Progress Indicator -->
+    <div class="scroll-progress-bar" id="scrollProgressBar" aria-hidden="true"></div>
+
+    <!-- Minimal Editorial Navigation -->
+    <header class="site-header" id="siteHeader">
+      <div class="header-container">
+        <a href="#hero" class="brand-logo" id="brandLogo" aria-label="TERRA Beyond the Surface">
+          <span class="logo-mark">TERRA</span>
+          <span class="logo-sub">BEYOND THE SURFACE</span>
+        </a>
+
+        <div class="header-center-info">
+          <span class="editorial-tag">TERRA JOURNAL / VOL. 01</span>
+          <span class="editorial-divider">/</span>
+          <span class="coordinates-tag" id="navCoords">46°12'N 09°02'E</span>
+        </div>
+
+        <nav class="main-nav" id="mainNav" aria-label="Main Navigation">
+          <ul class="nav-links">
+            <li><a href="#hero" class="nav-link active" data-nav="hero"><span class="nav-num">01</span> Origin</a></li>
+            <li><a href="#layers" class="nav-link" data-nav="layers"><span class="nav-num">02</span> The Layers</a></li>
+            <li><a href="#descent" class="nav-link" data-nav="descent"><span class="nav-num">03</span> Descent</a></li>
+            <li><a href="#future" class="nav-link" data-nav="future"><span class="nav-num">04</span> Future City</a></li>
+            <li><a href="#lab" class="nav-link" data-nav="lab"><span class="nav-num">05</span> Parallax Lab</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <!-- Audio Ambience Toggle -->
+          <button type="button" class="btn-icon-pill" id="audioToggle" aria-label="Toggle ambient atmosphere sound" title="Toggle Nature Ambience">
+            <span class="pill-dot audio-indicator"></span>
+            <span class="pill-text" id="audioLabel">AUDIO: OFF</span>
+          </button>
+
+          <!-- Motion Toggle -->
+          <button type="button" class="btn-icon-pill" id="motionToggle" aria-label="Toggle parallax motion" title="Toggle Parallax Motion">
+            <span class="pill-dot motion-indicator"></span>
+            <span class="pill-text" id="motionLabel">MOTION: ON</span>
+          </button>
+
+          <!-- Mobile Hamburger -->
+          <button type="button" class="menu-toggle-btn" id="menuToggle" aria-label="Open mobile navigation menu" aria-expanded="false">
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div class="mobile-nav-drawer" id="mobileDrawer" aria-hidden="true">
+        <div class="mobile-drawer-content">
+          <div class="mobile-drawer-header">
+            <span class="editorial-tag">TERRA JOURNAL / NAVIGATION</span>
+            <button type="button" class="mobile-close-btn" id="mobileCloseBtn" aria-label="Close navigation menu">✕</button>
+          </div>
+          <ul class="mobile-nav-links">
+            <li><a href="#hero" class="mobile-link" data-nav="hero"><span class="m-num">01</span> Origin</a></li>
+            <li><a href="#layers" class="mobile-link" data-nav="layers"><span class="m-num">02</span> The Layers</a></li>
+            <li><a href="#descent" class="mobile-link" data-nav="descent"><span class="m-num">03</span> Descent</a></li>
+            <li><a href="#future" class="mobile-link" data-nav="future"><span class="m-num">04</span> Future City</a></li>
+            <li><a href="#lab" class="mobile-link" data-nav="lab"><span class="m-num">05</span> Parallax Lab</a></li>
+          </ul>
+          <div class="mobile-drawer-footer">
+            <div class="mobile-controls">
+              <button type="button" class="btn-pill-small" id="mobileAudioToggle">Ambience: OFF</button>
+              <button type="button" class="btn-pill-small" id="mobileMotionToggle">Motion: ON</button>
+            </div>
+            <p class="mobile-copyright">TERRA — Beyond the Surface © 2026</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="mainContent">
+      <!-- SECTION 1: CINEMATIC HERO -->
+      <section class="section-hero" id="hero" aria-label="Cinematic Hero Section">
+        <!-- Parallax Landscape Canvas / SVG Container -->
+        <div class="hero-parallax-stage" id="heroParallaxStage">
+          <!-- Layer 0: Sky Atmosphere -->
+          <div class="hero-layer hero-layer-sky" data-depth="0.05">
+            <div class="sky-gradient-canvas"></div>
+            <div class="celestial-stars" id="heroStars" aria-hidden="true"></div>
+          </div>
+
+          <!-- Layer 1: Dramatic Sun / Planet -->
+          <div class="hero-layer hero-layer-sun" data-depth="0.12" id="heroSun">
+            <div class="terracotta-sun">
+              <div class="sun-corona"></div>
+              <div class="sun-disc"></div>
+              <div class="sun-subtleties"></div>
+            </div>
+          </div>
+
+          <!-- Layer 2: Distant Mountains Silhouette -->
+          <div class="hero-layer hero-layer-mountains-far" data-depth="0.22" id="heroFarMountains">
+            <svg class="landscape-svg" viewBox="0 0 1920 600" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0,600 L0,320 L160,260 L320,340 L520,210 L680,290 L880,180 L1080,280 L1280,190 L1460,310 L1660,220 L1800,290 L1920,240 L1920,600 Z" fill="#2A2F22" />
+            </svg>
+          </div>
+
+          <!-- Layer 3: Mist / Atmospheric Cloud Bands -->
+          <div class="hero-layer hero-layer-mist" data-depth="0.32" id="heroMist">
+            <div class="mist-drift mist-drift-1"></div>
+            <div class="mist-drift mist-drift-2"></div>
+          </div>
+
+          <!-- Layer 4: Mid Mountain Ridge with Strata -->
+          <div class="hero-layer hero-layer-mountains-mid" data-depth="0.45" id="heroMidMountains">
+            <svg class="landscape-svg" viewBox="0 0 1920 600" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0,600 L0,380 L140,320 L280,410 L440,290 L620,380 L760,280 L940,370 L1120,260 L1300,360 L1480,270 L1640,370 L1820,310 L1920,350 L1920,600 Z" fill="#3D4532" />
+              <!-- Highlight facets on mid peaks -->
+              <polygon points="440,290 480,380 400,380" fill="#4B543D" opacity="0.6"/>
+              <polygon points="760,280 810,380 720,380" fill="#4B543D" opacity="0.6"/>
+              <polygon points="1120,260 1180,370 1070,370" fill="#4B543D" opacity="0.6"/>
+              <polygon points="1480,270 1530,370 1430,370" fill="#4B543D" opacity="0.6"/>
+            </svg>
+          </div>
+
+          <!-- Layer 5: Evergreen Forest Silhouettes -->
+          <div class="hero-layer hero-layer-forest" data-depth="0.62" id="heroForest">
+            <svg class="landscape-svg" viewBox="0 0 1920 500" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0,500 L0,320 
+                C60,315 90,340 140,310 
+                C190,290 230,330 280,300 
+                C340,280 390,320 450,290 
+                C520,270 580,320 640,295 
+                C700,280 750,330 820,290 
+                C880,270 940,310 1000,280 
+                C1070,260 1140,310 1200,285 
+                C1270,270 1330,315 1400,280 
+                C1460,260 1520,305 1580,285 
+                C1640,270 1720,310 1780,280 
+                C1840,265 1880,290 1920,275 L1920,500 Z" fill="#202419" />
+              <!-- Conifer tree silhouettes along ridge -->
+              <g fill="#171914">
+                <polygon points="120,315 125,260 130,315"/>
+                <polygon points="135,312 140,245 145,312"/>
+                <polygon points="150,315 154,265 158,315"/>
+                <polygon points="270,305 275,240 280,305"/>
+                <polygon points="288,302 293,250 298,302"/>
+                <polygon points="435,295 440,230 445,295"/>
+                <polygon points="450,292 455,240 460,292"/>
+                <polygon points="625,300 630,235 635,300"/>
+                <polygon points="805,295 810,230 815,295"/>
+                <polygon points="820,292 825,245 830,292"/>
+                <polygon points="985,285 990,220 995,285"/>
+                <polygon points="1185,290 1190,225 1195,290"/>
+                <polygon points="1385,285 1390,225 1395,285"/>
+                <polygon points="1565,290 1570,230 1575,290"/>
+                <polygon points="1765,285 1770,220 1775,285"/>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Layer 6: Foreground Rocks & Flora -->
+          <div class="hero-layer hero-layer-foreground" data-depth="0.88" id="heroForeground">
+            <svg class="landscape-svg" viewBox="0 0 1920 400" preserveAspectRatio="none" aria-hidden="true">
+              <!-- Left crag & vegetation -->
+              <path d="M0,400 L0,180 Q100,160 220,240 Q340,320 480,260 Q600,210 740,320 L780,400 Z" fill="#171914" />
+              <!-- Right crag & vegetation -->
+              <path d="M1180,400 L1240,330 Q1380,240 1520,300 Q1680,210 1820,250 L1920,210 L1920,400 Z" fill="#171914" />
+              <!-- Subtle botanical fern details -->
+              <g stroke="#8A9B72" stroke-width="1.5" stroke-linecap="round" opacity="0.7">
+                <line x1="80" y1="210" x2="60" y2="150" />
+                <line x1="72" y1="185" x2="52" y2="175" />
+                <line x1="68" y1="170" x2="48" y2="160" />
+                <line x1="140" y1="230" x2="160" y2="170" />
+                <line x1="148" y1="205" x2="168" y2="195" />
+                <line x1="1780" y1="250" x2="1800" y2="180" />
+                <line x1="1788" y1="220" x2="1810" y2="210" />
+                <line x1="1840" y1="240" x2="1820" y2="180" />
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Hero Content Overlay (Editorial Typography & Interactions) -->
+        <div class="hero-content-wrapper">
+          <div class="hero-editorial-header">
+            <div class="editorial-meta-box">
+              <span class="meta-label">DISPATCH</span>
+              <span class="meta-value">TERRA JOURNAL / VOL. 01</span>
+            </div>
+            <div class="hero-altitude-badge">
+              <span class="pulse-indicator"></span>
+              <span class="badge-text">STRATUM 01: SUMMIT EXPANSE</span>
+            </div>
+          </div>
+
+          <div class="hero-title-container">
+            <h1 class="hero-title" id="heroTitle">
+              <span class="title-line title-line-1"><span class="char-span">B</span><span class="char-span">E</span><span class="char-span">Y</span><span class="char-span">O</span><span class="char-span">N</span><span class="char-span">D</span></span>
+              <span class="title-line title-line-2"><span class="char-span">T</span><span class="char-span">H</span><span class="char-span">E</span> <span class="char-span">S</span><span class="char-span">U</span><span class="char-span">R</span><span class="char-span">F</span><span class="char-span">A</span><span class="char-span">C</span><span class="char-span">E</span></span>
+            </h1>
+          </div>
+
+          <div class="hero-bottom-grid">
+            <div class="hero-subtext-block">
+              <p class="hero-supporting-text" id="heroSupportingText">
+                A living planet. Infinite layers. One journey.
+              </p>
+              <p class="hero-manifesto-lead">
+                Beneath the observable crust lies an intricate continuum of geology, biological networks, and emergent atmospheric harmony. Scroll to penetrate the strata.
+              </p>
+            </div>
+
+            <div class="hero-cta-cluster">
+              <a href="#layers" class="btn-primary" id="btnBeginJourney">
+                <span class="btn-text">BEGIN THE JOURNEY</span>
+                <span class="btn-arrow" aria-hidden="true">↓</span>
+              </a>
+              <span class="cta-telemetry">SCROLL DEPTH: 0.00 M</span>
+            </div>
+          </div>
+
+          <!-- Animated Scroll Indicator -->
+          <div class="hero-scroll-indicator" id="heroScrollIndicator">
+            <div class="scroll-mouse-pill">
+              <div class="scroll-wheel-dot"></div>
+            </div>
+            <span class="scroll-hint">SCROLL TO DESCEND</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: THE LAYERS (PARALLAX LANDSCAPE SECTION) -->
+      <section class="section-layers" id="layers" aria-label="The Layers Parallax Section">
+        <div class="layers-sticky-stage" id="layersStickyStage">
+          <!-- Multi visual layers moving at different scroll speeds -->
+          <!-- Layer 1: Distant mountain range -->
+          <div class="strata-layer strata-layer-mountains-far" id="strataFarMountains" data-speed="0.2">
+            <div class="strata-bg-wrapper">
+              <img src="/images/mountains.jpg" alt="Distant Alpine Mountain Ridges bathed in terracotta sunset" class="strata-img" loading="lazy" />
+              <div class="strata-scrim scrim-charcoal"></div>
+            </div>
+          </div>
+
+          <!-- Layer 2: Middle Mountain Range -->
+          <div class="strata-layer strata-layer-mountains-mid" id="strataMidMountains" data-speed="0.45">
+            <svg class="strata-mid-svg" viewBox="0 0 1920 800" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0,800 L0,500 L220,380 L460,520 L720,340 L980,480 L1240,320 L1520,490 L1760,370 L1920,430 L1920,800 Z" fill="#242B1B" />
+              <path d="M720,340 L840,490 L980,480 Z" fill="#3A432F" opacity="0.7"/>
+              <path d="M1240,320 L1360,500 L1520,490 Z" fill="#3A432F" opacity="0.7"/>
+            </svg>
+          </div>
+
+          <!-- Layer 3: Clouds and Atmospheric Haze -->
+          <div class="strata-layer strata-layer-clouds" id="strataClouds" data-speed="0.6">
+            <div class="cloud-drift-band band-upper"></div>
+            <div class="cloud-drift-band band-lower"></div>
+          </div>
+
+          <!-- Layer 4: Forest Silhouettes -->
+          <div class="strata-layer strata-layer-forest" id="strataForest" data-speed="0.85">
+            <svg class="strata-forest-svg" viewBox="0 0 1920 600" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0,600 L0,380 
+                C120,360 240,410 380,360 
+                C540,320 680,400 860,350 
+                C1040,310 1200,390 1380,340 
+                C1540,310 1720,380 1920,330 L1920,600 Z" fill="#1B1E16" />
+              <!-- Conifer tree cluster silhouettes -->
+              <g fill="#141711">
+                <polygon points="340,380 348,270 356,380"/>
+                <polygon points="360,375 367,290 374,375"/>
+                <polygon points="380,380 388,260 396,380"/>
+                <polygon points="820,370 828,280 836,370"/>
+                <polygon points="845,365 853,250 861,365"/>
+                <polygon points="1340,360 1348,270 1356,360"/>
+                <polygon points="1365,355 1373,240 1381,355"/>
+                <polygon points="1720,370 1728,260 1736,370"/>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Layer 5: Foreground Plants & Rocks -->
+          <div class="strata-layer strata-layer-foreground" id="strataForeground" data-speed="1.25">
+            <svg class="strata-fg-svg" viewBox="0 0 1920 500" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0,500 L0,280 Q200,220 440,320 Q680,420 920,290 Q1180,180 1440,320 Q1680,420 1920,260 L1920,500 Z" fill="#11130E" />
+              <!-- Geological strata fissures in foreground -->
+              <path d="M220,340 L380,360 L480,420" stroke="#8A9B72" stroke-width="2" fill="none" opacity="0.4"/>
+              <path d="M1280,310 L1420,330 L1560,400" stroke="#D85B32" stroke-width="2" fill="none" opacity="0.5"/>
+            </svg>
+          </div>
+
+          <!-- Section 2 Editorial Overlay Content (Clean Two-Column Grid: Text Left, Telemetry Right) -->
+          <div class="layers-editorial-content">
+            <div class="layers-text-column">
+              <div class="section-badge">
+                <span class="badge-index">02</span>
+                <span class="badge-name">THE GEOLOGICAL ARCHIVE</span>
+              </div>
+
+              <h2 class="layers-main-heading" id="layersHeading">
+                EVERY LAYER<br />
+                <span class="accent-terracotta">HAS A STORY.</span>
+              </h2>
+
+              <p class="layers-editorial-quote">
+                "Planetary memory inscribed in stone, atmosphere, and deep time."
+              </p>
+
+              <div class="editorial-card-glass">
+                <span class="card-caption">SECTION OVERVIEW // DISPATCH 02</span>
+                <p class="editorial-paragraph">
+                  The Earth does not forget. Every million years writes a millimeter into the slate. From the upper stratospheric currents down through dense old-growth canopies to deep tectonic basalt, each stratum operates as a living computational register of planetary resilience.
+                </p>
+                <div class="strata-stat-row">
+                  <div class="strata-stat">
+                    <span class="stat-number">4.54B</span>
+                    <span class="stat-desc">Years of Stratigraphic Record</span>
+                  </div>
+                  <div class="strata-stat">
+                    <span class="stat-number">7</span>
+                    <span class="stat-desc">Active Ecological Planes</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Editorial Depth Labels (Positioned cleanly on the right) -->
+            <div class="strata-telemetry-column" id="strataLabels">
+              <div class="floating-depth-tag depth-tag-1" data-depth-val="12,400M">
+                <div class="tag-header">
+                  <span class="tag-marker">●</span>
+                  <span class="tag-label">STRATOSPHERE // 12,400M</span>
+                </div>
+                <span class="tag-detail">Thin air, solar ozone filter, thermal inversion</span>
+              </div>
+              <div class="floating-depth-tag depth-tag-2" data-depth-val="4,200M">
+                <div class="tag-header">
+                  <span class="tag-marker">●</span>
+                  <span class="tag-label">MONTANE BIOME // 4,200M</span>
+                </div>
+                <span class="tag-detail">Tectonic ridges, glacial cirques, ancient granite</span>
+              </div>
+              <div class="floating-depth-tag depth-tag-3" data-depth-val="980M">
+                <div class="tag-header">
+                  <span class="tag-marker">●</span>
+                  <span class="tag-label">CANOPY BIOSPHERE // 980M</span>
+                </div>
+                <span class="tag-detail">Lungs of the earth, mycelial routing, carbon sink</span>
+              </div>
+              <div class="floating-depth-tag depth-tag-4" data-depth-val="-450M">
+                <div class="tag-header">
+                  <span class="tag-marker">●</span>
+                  <span class="tag-label">SUB-LITHOSPHERE // -450M</span>
+                </div>
+                <span class="tag-detail">Mineral memory, subterranean aquifers, crustal plates</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: DESCENT INTO NATURE (FOREST & DISCOVERY CARDS) -->
+      <section class="section-descent" id="descent" aria-label="Descent Into Nature">
+        <div class="descent-background-container" id="descentBg">
+          <img src="/images/forest.jpg" alt="Atmospheric Primeval Forest with golden light rays" class="descent-hero-img" id="descentForestImg" loading="lazy" />
+          <div class="descent-light-rays" id="descentLightRays" aria-hidden="true"></div>
+          <div class="descent-overlay-scrim"></div>
+          <!-- Canvas for subtle floating spores / leaves -->
+          <canvas class="nature-particles-canvas" id="natureParticlesCanvas" aria-hidden="true"></canvas>
+        </div>
+
+        <div class="descent-content-container">
+          <div class="section-header-editorial">
+            <div class="section-badge">
+              <span class="badge-index">03</span>
+              <span class="badge-name">TERRESTRIAL DESCENT</span>
+            </div>
+            <h2 class="section-title-large">
+              INTO THE<br />
+              <span class="text-terracotta">LIVING PULSE</span>
+            </h2>
+            <p class="section-subtitle">
+              As we leave the alpine peaks behind, atmospheric pressure settles into the ancient canopy. Here, billions of organismal networks communicate through microscopic fungal filaments, water memory, and deep mineral stone.
+            </p>
+          </div>
+
+          <!-- Three Interactive Discovery Cards -->
+          <div class="discovery-cards-grid" id="discoveryCardsGrid">
+            <!-- Card 01: Forests -->
+            <article class="discovery-card" data-card="forest" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Discovery Card 01 Forests">
+              <div class="card-image-thumb">
+                <img src="/images/forest.jpg" alt="Deep forest canopy with cedar trees" loading="lazy" />
+                <div class="card-thumb-badge">01 // CANOPY</div>
+              </div>
+              <div class="card-body">
+                <div class="card-header-meta">
+                  <span class="card-category">BIOSPHERE</span>
+                  <span class="card-reading-time">3 MIN STUDY</span>
+                </div>
+                <h3 class="card-title">01 — FORESTS</h3>
+                <p class="card-lead">
+                  The wood-wide web: mycorrhizal intelligence coordinating carbon, phosphorus, and moisture across millennia.
+                </p>
+                <div class="card-hover-reveal">
+                  <div class="card-stat-line">
+                    <span class="cs-label">Root Network:</span>
+                    <span class="cs-val">450 km / m³</span>
+                  </div>
+                  <div class="card-stat-line">
+                    <span class="cs-label">Carbon Storage:</span>
+                    <span class="cs-val">861 Gt global sink</span>
+                  </div>
+                  <span class="card-action-cue">CLICK TO EXAMINE ARCHIVE →</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 02: Water -->
+            <article class="discovery-card" data-card="water" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Discovery Card 02 Water">
+              <div class="card-image-thumb">
+                <img src="/images/water.jpg" alt="Pure glacial river cascading through volcanic rocks" loading="lazy" />
+                <div class="card-thumb-badge">02 // HYDROSPHERE</div>
+              </div>
+              <div class="card-body">
+                <div class="card-header-meta">
+                  <span class="card-category">HYDRODYNAMICS</span>
+                  <span class="card-reading-time">4 MIN STUDY</span>
+                </div>
+                <h3 class="card-title">02 — WATER</h3>
+                <p class="card-lead">
+                  Atmospheric rivers and sub-surface aquifers carving granite, distributing thermal energy and lifeblood.
+                </p>
+                <div class="card-hover-reveal">
+                  <div class="card-stat-line">
+                    <span class="cs-label">Flow Velocity:</span>
+                    <span class="cs-val">4.2 m/s headwaters</span>
+                  </div>
+                  <div class="card-stat-line">
+                    <span class="cs-label">Filtration Purity:</span>
+                    <span class="cs-val">99.98% mineral-rich</span>
+                  </div>
+                  <span class="card-action-cue">CLICK TO EXAMINE ARCHIVE →</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 03: Earth -->
+            <article class="discovery-card" data-card="earth" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Discovery Card 03 Earth">
+              <div class="card-image-thumb">
+                <img src="/images/earth.jpg" alt="Tectonic terracotta canyon rock strata" loading="lazy" />
+                <div class="card-thumb-badge">03 // GEOSPHERE</div>
+              </div>
+              <div class="card-body">
+                <div class="card-header-meta">
+                  <span class="card-category">LITHOLOGY</span>
+                  <span class="card-reading-time">5 MIN STUDY</span>
+                </div>
+                <h3 class="card-title">03 — EARTH</h3>
+                <p class="card-lead">
+                  Tectonic rock strata, living topsoil microbiota, and geothermal memory anchoring the crust.
+                </p>
+                <div class="card-hover-reveal">
+                  <div class="card-stat-line">
+                    <span class="cs-label">Mantle Pressure:</span>
+                    <span class="cs-val">136 GPa at depth</span>
+                  </div>
+                  <div class="card-stat-line">
+                    <span class="cs-label">Soil Biome:</span>
+                    <span class="cs-val">10B microbes / gram</span>
+                  </div>
+                  <span class="card-action-cue">CLICK TO EXAMINE ARCHIVE →</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: THE FUTURE LANDSCAPE (SUSTAINABLE BIOPHILIC CITY) -->
+      <section class="section-future" id="future" aria-label="The Future Landscape">
+        <div class="future-visual-stage" id="futureVisualStage">
+          <!-- Background image of sustainable biophilic eco-city -->
+          <div class="future-bg-layer" id="futureBgLayer">
+            <img src="/images/future_city.jpg" alt="Biophilic sustainable eco-city with green rooftop towers and wind turbines bathed in sunset" class="future-hero-img" loading="lazy" />
+            <div class="future-sunset-glow" aria-hidden="true"></div>
+            <div class="future-scrim-vignette" aria-hidden="true"></div>
+          </div>
+
+          <!-- Animated SVG Overlay for interactive Wind Turbines & Energy Grids -->
+          <div class="future-svg-overlay" aria-hidden="true">
+            <svg class="future-animated-svg" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+              <!-- Wind Turbine 1 (Distant Ridge Left) -->
+              <g class="wind-turbine" transform="translate(370, 240) scale(0.65)">
+                <line x1="0" y1="0" x2="0" y2="120" stroke="#171914" stroke-width="4"/>
+                <circle cx="0" cy="0" r="4" fill="#D85B32" />
+                <g class="turbine-rotor rotor-slow">
+                  <line x1="0" y1="0" x2="0" y2="-45" stroke="#F2E9D8" stroke-width="3" stroke-linecap="round"/>
+                  <line x1="0" y1="0" x2="39" y2="22.5" stroke="#F2E9D8" stroke-width="3" stroke-linecap="round"/>
+                  <line x1="0" y1="0" x2="-39" y2="22.5" stroke="#F2E9D8" stroke-width="3" stroke-linecap="round"/>
+                </g>
+              </g>
+
+              <!-- Wind Turbine 2 (Distant Ridge Mid) -->
+              <g class="wind-turbine" transform="translate(680, 290) scale(0.55)">
+                <line x1="0" y1="0" x2="0" y2="100" stroke="#171914" stroke-width="3.5"/>
+                <circle cx="0" cy="0" r="3.5" fill="#D85B32" />
+                <g class="turbine-rotor rotor-med">
+                  <line x1="0" y1="0" x2="0" y2="-40" stroke="#F2E9D8" stroke-width="2.5" stroke-linecap="round"/>
+                  <line x1="0" y1="0" x2="34.6" y2="20" stroke="#F2E9D8" stroke-width="2.5" stroke-linecap="round"/>
+                  <line x1="0" y1="0" x2="-34.6" y2="20" stroke="#F2E9D8" stroke-width="2.5" stroke-linecap="round"/>
+                </g>
+              </g>
+
+              <!-- Wind Turbine 3 (Distant Ridge Right) -->
+              <g class="wind-turbine" transform="translate(1260, 310) scale(0.6)">
+                <line x1="0" y1="0" x2="0" y2="110" stroke="#171914" stroke-width="3.5"/>
+                <circle cx="0" cy="0" r="3.5" fill="#D85B32" />
+                <g class="turbine-rotor rotor-fast">
+                  <line x1="0" y1="0" x2="0" y2="-42" stroke="#F2E9D8" stroke-width="2.5" stroke-linecap="round"/>
+                  <line x1="0" y1="0" x2="36.4" y2="21" stroke="#F2E9D8" stroke-width="2.5" stroke-linecap="round"/>
+                  <line x1="0" y1="0" x2="-36.4" y2="21" stroke="#F2E9D8" stroke-width="2.5" stroke-linecap="round"/>
+                </g>
+              </g>
+
+              <!-- Micro-energy pulse lines along pedestrian bridge / solar paths -->
+              <path class="energy-pulse-path" d="M850,910 Q1050,860 1350,920" fill="none" stroke="#C6E75A" stroke-width="2" stroke-dasharray="8 16" opacity="0.75" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="future-editorial-wrapper">
+          <div class="section-header-editorial">
+            <div class="section-badge">
+              <span class="badge-index">04</span>
+              <span class="badge-name">THE SYMBIOTIC HORIZON</span>
+            </div>
+
+            <h2 class="section-title-large">
+              THE FUTURE<br />
+              <span class="accent-terracotta">IS A CHOICE.</span>
+            </h2>
+
+            <p class="section-subtitle">
+              We reject the dystopian concrete sprawl and neon decay. The next epoch of human habitat aligns directly with ecological metabolism: buildings grown from bio-materials, energy harvested harmoniously from air currents, and closed loops where waste ceases to exist.
+            </p>
+          </div>
+
+          <!-- Three Interactive Feature Elements -->
+          <div class="future-features-container" id="futureFeaturesContainer">
+            <div class="features-tabs-nav" role="tablist" aria-label="Future City Pillars">
+              <button type="button" class="feature-tab active" role="tab" id="tabEnergy" aria-selected="true" aria-controls="panelEnergy" data-feature="energy">
+                <span class="tab-index">01</span>
+                <span class="tab-title">Renewable Energy</span>
+                <span class="tab-indicator"></span>
+              </button>
+
+              <button type="button" class="feature-tab" role="tab" id="tabArchitecture" aria-selected="false" aria-controls="panelArchitecture" data-feature="architecture">
+                <span class="tab-index">02</span>
+                <span class="tab-title">Living Architecture</span>
+                <span class="tab-indicator"></span>
+              </button>
+
+              <button type="button" class="feature-tab" role="tab" id="tabCircular" aria-selected="false" aria-controls="panelCircular" data-feature="circular">
+                <span class="tab-index">03</span>
+                <span class="tab-title">Circular Design</span>
+                <span class="tab-indicator"></span>
+              </button>
+            </div>
+
+            <!-- Feature Panels -->
+            <div class="feature-panels-viewport">
+              <!-- Panel 01: Renewable Energy -->
+              <div class="feature-panel active" id="panelEnergy" role="tabpanel" aria-labelledby="tabEnergy">
+                <div class="panel-inner-grid">
+                  <div class="panel-text-column">
+                    <span class="panel-eyebrow">ENERGY GENERATION & DISTRIBUTION</span>
+                    <h3 class="panel-heading">Distributed Atmospheric & Solar Micro-Grids</h3>
+                    <p class="panel-body">
+                      Rather than central monolithic fossil grids, the future habitat captures mountain thermal drafts with low-profile vertical turbines and passive solar phototropic canopies integrated directly into hill terraces.
+                    </p>
+                    <ul class="panel-metrics-list">
+                      <li>
+                        <span class="metric-value">100%</span>
+                        <span class="metric-desc">Autonomous clean generation across day/night thermal shifts</span>
+                      </li>
+                      <li>
+                        <span class="metric-value">Zero</span>
+                        <span class="metric-desc">Fossil fuel backup required through gravity-battery storage</span>
+                      </li>
+                      <li>
+                        <span class="metric-value">3.8x</span>
+                        <span class="metric-desc">Surplus clean energy shared with surrounding regional biomes</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="panel-interactive-card">
+                    <div class="interactive-diagram-header">
+                      <span class="diagram-tag">LIVE SIMULATION TELEMETRY</span>
+                      <span class="diagram-live-pill"><span class="dot-lime"></span> ONLINE</span>
+                    </div>
+                    <div class="energy-flow-meter">
+                      <div class="meter-bar-container">
+                        <div class="meter-bar-fill" style="width: 88%;"></div>
+                      </div>
+                      <div class="meter-labels">
+                        <span>Solar Harvest: 88%</span>
+                        <span>Wind Capture: 94%</span>
+                      </div>
+                    </div>
+                    <div class="interactive-control-box">
+                      <label for="energySlider" class="control-label">Simulate Ridge Wind Velocity (m/s):</label>
+                      <input type="range" id="energySlider" min="2" max="25" value="14" class="custom-range" />
+                      <div class="slider-readout">
+                        <span>Current: <strong id="windSpeedVal">14 m/s</strong></span>
+                        <span>Output: <strong id="powerOutputVal">4,280 kW</strong></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Panel 02: Living Architecture -->
+              <div class="feature-panel" id="panelArchitecture" role="tabpanel" aria-labelledby="tabArchitecture" hidden>
+                <div class="panel-inner-grid">
+                  <div class="panel-text-column">
+                    <span class="panel-eyebrow">BIOPHILIC STRUCTURAL SYSTEMS</span>
+                    <h3 class="panel-heading">Mass Timber & Photosynthetic Vertical Facades</h3>
+                    <p class="panel-body">
+                      Buildings are not dead boxes; they are vertical ecosystems. Cross-laminated regional timber sequesters metric tons of carbon, while terraced vertical gardens filter particulate matter and lower ambient urban temperatures by 4.5°C.
+                    </p>
+                    <ul class="panel-metrics-list">
+                      <li>
+                        <span class="metric-value">-62%</span>
+                        <span class="metric-desc">Embodied carbon compared to conventional steel & portland cement</span>
+                      </li>
+                      <li>
+                        <span class="metric-value">4.5°C</span>
+                        <span class="metric-desc">Microclimate cooling from vegetative transpiration</span>
+                      </li>
+                      <li>
+                        <span class="metric-value">1,400+</span>
+                        <span class="metric-desc">Endemic botanical and bird species sustained on towers</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="panel-interactive-card">
+                    <div class="interactive-diagram-header">
+                      <span class="diagram-tag">BIOSPHERE INGRESS INDEX</span>
+                      <span class="diagram-live-pill"><span class="dot-lime"></span> VIBRANT</span>
+                    </div>
+                    <div class="canopy-density-meter">
+                      <div class="canopy-visual-ring">
+                        <span class="ring-number">74%</span>
+                        <span class="ring-caption">Urban Canopy Density</span>
+                      </div>
+                    </div>
+                    <div class="interactive-control-box">
+                      <label for="canopySlider" class="control-label">Adjust Rooftop Biomass Level (%):</label>
+                      <input type="range" id="canopySlider" min="20" max="100" value="74" class="custom-range" />
+                      <div class="slider-readout">
+                        <span>Canopy: <strong id="canopyVal">74%</strong></span>
+                        <span>CO2 Uptake: <strong id="co2Val">182 t/yr</strong></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Panel 03: Circular Design -->
+              <div class="feature-panel" id="panelCircular" role="tabpanel" aria-labelledby="tabCircular" hidden>
+                <div class="panel-inner-grid">
+                  <div class="panel-text-column">
+                    <span class="panel-eyebrow">METABOLIC INDUSTRIAL ECOLOGY</span>
+                    <h3 class="panel-heading">Closed-Loop Material & Biological Cycles</h3>
+                    <p class="panel-body">
+                      Nature knows no concept of garbage. Greywater is purified through reed-bed bio-swales, organic compost enriches rooftop agriculture, and technical nutrients are endlessly disassembled and remanufactured.
+                    </p>
+                    <ul class="panel-metrics-list">
+                      <li>
+                        <span class="metric-value">99.4%</span>
+                        <span class="metric-desc">Total solid waste diversion rate into biological digestion</span>
+                      </li>
+                      <li>
+                        <span class="metric-value">100%</span>
+                        <span class="metric-desc">Water reclaimed on-site through gravity-fed wetland channels</span>
+                      </li>
+                      <li>
+                        <span class="metric-value">Infinite</span>
+                        <span class="metric-desc">Material passport tracking of architectural timber elements</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="panel-interactive-card">
+                    <div class="interactive-diagram-header">
+                      <span class="diagram-tag">CIRCULAR RESOURCE RECOVERY</span>
+                      <span class="diagram-live-pill"><span class="dot-lime"></span> CLOSED-LOOP</span>
+                    </div>
+                    <div class="circular-status-box">
+                      <div class="cycle-pill active">Bio-Nutrients: Reclaimed</div>
+                      <div class="cycle-pill active">Water: 100% Recirculated</div>
+                      <div class="cycle-pill active">Thermal Heat: Cogeneration</div>
+                    </div>
+                    <div class="interactive-control-box">
+                      <button type="button" class="btn-secondary" id="btnSimulateCycle">
+                        Run Metabolic Cycle Pulse ↺
+                      </button>
+                      <div class="slider-readout mt-2">
+                        <span id="cycleStatus">Status: Optimal Equilibrium</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: INTERACTIVE PARALLAX EXPERIENCE (PARALLAX LAB) -->
+      <section class="section-lab" id="lab" aria-label="Interactive Parallax Experience">
+        <div class="lab-container">
+          <div class="section-header-editorial">
+            <div class="section-badge">
+              <span class="badge-index">05</span>
+              <span class="badge-name">PARALLAX LABORATORY</span>
+            </div>
+
+            <h2 class="section-title-large">
+              EXPERIENCE THE<br />
+              <span class="text-terracotta">INTERACTIVE DEPTH</span>
+            </h2>
+
+            <p class="section-subtitle">
+              Take direct control of the optical planes. Move your cursor or touch-drag across the interactive viewport to experience multi-dimensional depth parallax, shift atmospheric light conditions, and inspect elevation telemetry.
+            </p>
+          </div>
+
+          <!-- Controls Bar -->
+          <div class="lab-controls-bar" id="labControlsBar">
+            <div class="control-group">
+              <span class="control-label">ATMOSPHERIC ILLUMINATION:</span>
+              <div class="button-toggle-row">
+                <button type="button" class="btn-toggle active" data-theme="sunset">Sunset Gold</button>
+                <button type="button" class="btn-toggle" data-theme="dawn">Dawn Mist</button>
+                <button type="button" class="btn-toggle" data-theme="meridian">Meridian</button>
+                <button type="button" class="btn-toggle" data-theme="charcoal">Charcoal Dusk</button>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <span class="control-label">DEPTH INTENSITY:</span>
+              <div class="button-toggle-row">
+                <button type="button" class="btn-toggle" data-depth-mult="0.5">0.5x Subtle</button>
+                <button type="button" class="btn-toggle active" data-depth-mult="1.0">1.0x Real</button>
+                <button type="button" class="btn-toggle" data-depth-mult="2.0">2.0x Hyper</button>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <span class="control-label">CINEMATIC SWEEP:</span>
+              <button type="button" class="btn-primary btn-explore" id="btnExploreLandscape">
+                EXPLORE THE LANDSCAPE
+              </button>
+            </div>
+          </div>
+
+          <!-- Interactive Viewport Canvas Stage -->
+          <div class="interactive-stage-viewport" id="labStage" tabindex="0" role="region" aria-label="Interactive multi-layer parallax stage. Move pointer or drag to navigate depth layers.">
+            <!-- Stage Layers -->
+            <!-- Layer 0: Sky Atmosphere -->
+            <div class="lab-stage-layer lab-layer-sky" data-layer-depth="0.08">
+              <div class="lab-sky-gradient"></div>
+              <div class="lab-stars" id="labStars"></div>
+            </div>
+
+            <!-- Layer 1: Sun / Celestial Body -->
+            <div class="lab-stage-layer lab-layer-sun" data-layer-depth="0.18">
+              <div class="lab-sun-disc" id="labSunDisc"></div>
+            </div>
+
+            <!-- Layer 2: Distant Geological Ridge -->
+            <div class="lab-stage-layer lab-layer-far-ridge" data-layer-depth="0.32">
+              <svg class="lab-svg" viewBox="0 0 1600 600" preserveAspectRatio="none">
+                <path d="M0,600 L0,320 L180,240 L360,340 L580,210 L760,310 L980,180 L1180,300 L1380,220 L1600,280 L1600,600 Z" fill="#2E3524"/>
+              </svg>
+            </div>
+
+            <!-- Layer 3: Atmospheric Mist Band -->
+            <div class="lab-stage-layer lab-layer-mist" data-layer-depth="0.48">
+              <div class="lab-mist-layer"></div>
+            </div>
+
+            <!-- Layer 4: Biophilic Architecture Silhouettes -->
+            <div class="lab-stage-layer lab-layer-architecture" data-layer-depth="0.68">
+              <svg class="lab-svg" viewBox="0 0 1600 600" preserveAspectRatio="none">
+                <path d="M0,600 L0,410 L120,380 L160,260 L200,260 L220,390 L380,420 L440,290 L480,290 L520,430 L660,420 L720,230 L760,230 L800,440 L980,410 L1040,280 L1080,280 L1140,430 L1300,420 L1380,250 L1420,250 L1460,430 L1600,420 L1600,600 Z" fill="#20251A"/>
+                <!-- Solar/Green roof highlights -->
+                <rect x="160" y="255" width="40" height="5" fill="#8A9B72"/>
+                <rect x="440" y="285" width="40" height="5" fill="#8A9B72"/>
+                <rect x="720" y="225" width="40" height="5" fill="#8A9B72"/>
+                <rect x="1040" y="275" width="40" height="5" fill="#8A9B72"/>
+                <rect x="1380" y="245" width="40" height="5" fill="#8A9B72"/>
+              </svg>
+            </div>
+
+            <!-- Layer 5: Evergreen Forest & Valley -->
+            <div class="lab-stage-layer lab-layer-forest" data-layer-depth="0.95">
+              <svg class="lab-svg" viewBox="0 0 1600 600" preserveAspectRatio="none">
+                <path d="M0,600 L0,390 C160,370 280,440 460,390 C640,340 820,430 1020,370 C1200,320 1420,420 1600,360 L1600,600 Z" fill="#181C13"/>
+                <!-- Tree pins -->
+                <g fill="#12150E">
+                  <polygon points="210,400 216,310 222,400"/>
+                  <polygon points="228,395 233,325 238,395"/>
+                  <polygon points="560,380 566,290 572,380"/>
+                  <polygon points="920,380 926,280 932,380"/>
+                  <polygon points="1280,360 1286,270 1292,360"/>
+                </g>
+              </svg>
+            </div>
+
+            <!-- Layer 6: Foreground Rocks & Interactive Focus Reticle -->
+            <div class="lab-stage-layer lab-layer-foreground" data-layer-depth="1.35">
+              <svg class="lab-svg" viewBox="0 0 1600 400" preserveAspectRatio="none">
+                <path d="M0,400 L0,220 Q180,140 380,260 Q600,380 840,240 Q1120,120 1380,270 L1600,210 L1600,400 Z" fill="#11130D"/>
+              </svg>
+            </div>
+
+            <!-- Interactive Biome Focus Scanner (Follows Mouse with Depth Lens) -->
+            <div class="biome-lens" id="biomeLens" aria-hidden="true">
+              <div class="lens-crosshair-h"></div>
+              <div class="lens-crosshair-v"></div>
+              <div class="lens-ring"></div>
+              <div class="lens-telemetry">
+                <span class="lt-title">SCANNING DEPTH</span>
+                <span class="lt-coords" id="lensCoords">X: 0.00 | Y: 0.00</span>
+                <span class="lt-stratum" id="lensStratum">STRATUM: MONTANE</span>
+              </div>
+            </div>
+
+            <!-- Interactive Hint Prompt -->
+            <div class="stage-interaction-prompt">
+              <span class="prompt-icon">⊹</span>
+              <span>DRAG OR MOVE CURSOR TO TEST OPTICAL DISPLACEMENT</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: CLOSING SECTION & FOOTER -->
+      <section class="section-closing" id="closing" aria-label="Closing Section">
+        <div class="closing-backdrop">
+          <div class="closing-scrim"></div>
+        </div>
+
+        <div class="closing-content-container">
+          <div class="closing-editorial-badge">
+            <span class="badge-dot"></span>
+            <span class="badge-text">TERRA JOURNAL // EPILOGUE</span>
+          </div>
+
+          <h2 class="closing-headline" id="closingHeadline">
+            THE PLANET<br />
+            <span class="accent-terracotta">IS STILL BECOMING.</span>
+          </h2>
+
+          <p class="closing-supporting-text">
+            Explore deeper. Think differently. Build a better tomorrow.
+          </p>
+
+          <p class="closing-manifesto-sub">
+            The journey through terrain and time does not conclude here. Every structure we conceive, every code we author, and every resource we steward shapes the geological record of tomorrow.
+          </p>
+
+          <div class="closing-action-row">
+            <button type="button" class="btn-primary" id="btnBackToSurface">
+              <span class="btn-arrow" aria-hidden="true">↑</span>
+              <span class="btn-text">BACK TO THE SURFACE</span>
+            </button>
+            <a href="#layers" class="btn-secondary" id="btnReviewLayers">
+              <span>RE-EXAMINE THE LAYERS</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Minimal Handcrafted Editorial Footer -->
+        <footer class="site-footer" id="siteFooter">
+          <div class="footer-grid">
+            <div class="footer-col footer-col-brand">
+              <span class="footer-logo">TERRA</span>
+              <p class="footer-tagline">BEYOND THE SURFACE</p>
+              <p class="footer-statement">
+                An independent creative web experience celebrating geological continuity and ecological architecture.
+              </p>
+            </div>
+
+            <div class="footer-col footer-col-nav">
+              <span class="footer-col-title">NAVIGATION</span>
+              <ul class="footer-links">
+                <li><a href="#hero">01 Origin & Summit</a></li>
+                <li><a href="#layers">02 The Layers</a></li>
+                <li><a href="#descent">03 Terrestrial Descent</a></li>
+                <li><a href="#future">04 The Future Landscape</a></li>
+                <li><a href="#lab">05 Parallax Laboratory</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col footer-col-specs">
+              <span class="footer-col-title">SPECIFICATIONS</span>
+              <ul class="footer-specs-list">
+                <li><span>COORDINATES:</span> <strong>46° 12' N // 09° 02' E</strong></li>
+                <li><span>COLOR SYSTEM:</span> <strong>Deep Charcoal & Warm Cream</strong></li>
+                <li><span>TYPOGRAPHY:</span> <strong>Syne + Plus Jakarta Sans + Cinzel</strong></li>
+                <li><span>PARALLAX ENGINE:</span> <strong>GSAP ScrollTrigger v3.15</strong></li>
+                <li><span>ACCESSIBILITY:</span> <strong>WCAG 2.1 AA Compliant</strong></li>
+              </ul>
+            </div>
+
+            <div class="footer-col footer-col-notice">
+              <span class="footer-col-title">DISCLAIMER</span>
+              <p class="footer-disclaimer-text">
+                TERRA is an independent creative web experience. Designed with handcrafted aesthetics, zero third-party telemetry, and respect for nature and digital craft.
+              </p>
+              <div class="footer-timestamp">
+                <span>LOCAL TIME:</span>
+                <span id="footerClock">--:--:--</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-bottom-bar">
+            <span>© 2026 TERRA — BEYOND THE SURFACE. ALL RIGHTS RESERVED.</span>
+            <span>HANDCRAFTED WITH PRECISION.</span>
+          </div>
+        </footer>
+      </section>
+    </main>
+
+    <!-- DISCOVERY DETAIL MODAL (Fully Accessible & Interactive) -->
+    <div class="discovery-modal-backdrop" id="discoveryModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+      <div class="modal-dialog-panel">
+        <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="Close detail modal">✕</button>
+        
+        <div class="modal-scrollable-body">
+          <div class="modal-header-hero">
+            <img src="/images/forest.jpg" alt="Detail view" id="modalHeroImg" class="modal-hero-img" />
+            <div class="modal-hero-scrim"></div>
+            <div class="modal-hero-tag" id="modalTag">BIOSPHERE ARCHIVE // 01</div>
+            <h2 class="modal-hero-title" id="modalTitle">01 — FORESTS</h2>
+          </div>
+
+          <div class="modal-content-grid">
+            <div class="modal-main-column">
+              <p class="modal-lead" id="modalLead">
+                Forest ecosystems are not collections of solitary timber; they are decentralized computational organisms linked by fungal mycorrhizal channels.
+              </p>
+              <div class="modal-rich-text" id="modalRichText">
+                <!-- Injected via JavaScript -->
+              </div>
+            </div>
+
+            <div class="modal-sidebar-column">
+              <div class="modal-telemetry-box">
+                <h4 class="telemetry-box-title">SYSTEM TELEMETRY</h4>
+                <div class="telemetry-items" id="modalTelemetry">
+                  <!-- Injected via JavaScript -->
+                </div>
+              </div>
+
+              <div class="modal-action-box">
+                <button type="button" class="btn-primary w-full" id="modalActionBtn">
+                  DOWNLOAD STRATA DATA (JSON)
+                </button>
+                <button type="button" class="btn-secondary w-full" id="modalDismissBtn">
+                  CLOSE ARCHIVE
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

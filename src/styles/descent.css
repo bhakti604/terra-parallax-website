@@ -1,0 +1,266 @@
+/* ==========================================================================
+   TERRA — SECTION 3: DESCENT INTO NATURE STYLES
+   Primeval Forest, Animated Light Beams, Interactive Discovery Cards
+   ========================================================================== */
+
+.section-descent {
+  position: relative;
+  width: 100%;
+  min-height: 140vh;
+  background-color: var(--color-charcoal-deep);
+  padding: var(--space-4xl) 0;
+  overflow: hidden;
+}
+
+/* Background Stage with Depth and Light Rays */
+.descent-background-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.descent-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.1) brightness(0.7);
+  transform: scale(1.05);
+  will-change: transform;
+}
+
+.descent-overlay-scrim {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(23, 25, 20, 0.4) 0%, rgba(23, 25, 20, 0.9) 85%);
+}
+
+/* Animated Light Rays */
+.descent-light-rays {
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background: 
+    linear-gradient(135deg, rgba(242, 233, 216, 0.12) 0%, transparent 40%),
+    linear-gradient(145deg, rgba(216, 91, 50, 0.08) 15%, transparent 55%),
+    linear-gradient(125deg, rgba(198, 231, 90, 0.06) 30%, transparent 65%);
+  filter: blur(18px);
+  animation: lightRayShift 12s ease-in-out infinite alternate;
+}
+
+@keyframes lightRayShift {
+  0% { transform: rotate(0deg) scale(1); opacity: 0.7; }
+  100% { transform: rotate(2.5deg) scale(1.05); opacity: 1; }
+}
+
+/* Canvas for subtle floating spores / leaves */
+.nature-particles-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Section Content Container */
+.descent-content-container {
+  position: relative;
+  z-index: 10;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+}
+
+.section-header-editorial {
+  max-width: 850px;
+  margin-bottom: var(--space-3xl);
+}
+
+.section-title-large {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 5.8vw, 5.5rem);
+  font-weight: var(--fw-black);
+  line-height: 0.96;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--color-cream-warm);
+  margin-bottom: var(--space-md);
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.68;
+  color: var(--color-cream-muted);
+  max-width: 720px;
+}
+
+/* Three Interactive Discovery Cards Grid */
+.discovery-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+.discovery-card {
+  position: relative;
+  background-color: rgba(23, 25, 20, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  outline: none;
+  transition: transform var(--duration-normal) var(--ease-editorial),
+              border-color var(--duration-normal) var(--ease-editorial),
+              box-shadow var(--duration-normal) var(--ease-editorial);
+}
+
+.discovery-card:hover,
+.discovery-card:focus-visible {
+  transform: translateY(-8px);
+  border-color: var(--color-terracotta);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--color-terracotta);
+}
+
+.card-image-thumb {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background-color: var(--color-charcoal-deep);
+}
+
+.card-image-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease-editorial),
+              filter var(--duration-slow);
+  filter: contrast(1.05) brightness(0.9);
+}
+
+.discovery-card:hover .card-image-thumb img {
+  transform: scale(1.08);
+  filter: contrast(1.1) brightness(1.05);
+}
+
+.card-thumb-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: rgba(23, 25, 20, 0.85);
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--border-subtle);
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.12em;
+  color: var(--color-lime-acid);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+}
+
+.card-body {
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.card-header-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.card-category {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.15em;
+  color: var(--color-terracotta);
+}
+
+.card-reading-time {
+  font-size: 0.68rem;
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: var(--fw-black);
+  letter-spacing: 0.04em;
+  color: var(--color-cream-warm);
+  margin-bottom: 10px;
+}
+
+.card-lead {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--color-cream-muted);
+  margin-bottom: var(--space-md);
+}
+
+/* Hover Reveal Additional Information */
+.card-hover-reveal {
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card-stat-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+}
+
+.cs-label {
+  color: var(--text-faint);
+}
+
+.cs-val {
+  color: var(--color-lime-acid);
+  font-weight: var(--fw-semibold);
+  font-family: var(--font-body);
+}
+
+.card-action-cue {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.72rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.12em;
+  color: var(--color-terracotta);
+  transition: transform var(--duration-fast) var(--ease-editorial);
+}
+
+.discovery-card:hover .card-action-cue {
+  transform: translateX(4px);
+  color: var(--color-cream-warm);
+}
+
+/* Responsive Breakpoints for Section 3 */
+@media (max-width: 1024px) {
+  .discovery-cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: var(--space-lg) auto 0;
+  }
+}

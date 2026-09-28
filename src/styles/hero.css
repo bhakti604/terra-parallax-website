@@ -1,0 +1,458 @@
+/* ==========================================================================
+   TERRA — HERO SECTION STYLES
+   Cinematic Full-Screen Hero, Refined Oversized Typography, Balanced Visual Hierarchy
+   ========================================================================== */
+
+.section-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-charcoal-deep);
+}
+
+/* Parallax Landscape Canvas / Multi-Layer Stage */
+.hero-parallax-stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Layer 0: Sky Atmosphere */
+.hero-layer-sky {
+  z-index: 1;
+}
+
+.sky-gradient-canvas {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 35%, #2A3123 0%, #1D2218 45%, #171914 85%);
+}
+
+.celestial-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  background-image: 
+    radial-gradient(1px 1px at 20px 30px, #F2E9D8, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 150px 80px, #F2E9D8, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 320px 140px, #D85B32, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 480px 60px, #F2E9D8, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 700px 190px, #C6E75A, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 890px 40px, #F2E9D8, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 1100px 120px, #F2E9D8, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 1350px 70px, #D85B32, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 1600px 160px, #F2E9D8, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 1820px 90px, #F2E9D8, rgba(0,0,0,0));
+  background-repeat: repeat;
+  background-size: 1920px 600px;
+  opacity: 0.45;
+}
+
+/* Layer 1: Terracotta Sun / Planet - Crowned above heading */
+.hero-layer-sun {
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.terracotta-sun {
+  position: absolute;
+  top: 9%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(270px, 30vw);
+  height: min(270px, 30vw);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.sun-corona {
+  position: absolute;
+  inset: -38px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(216, 91, 50, 0.45) 0%, rgba(216, 91, 50, 0.12) 50%, rgba(23, 25, 20, 0) 75%);
+  filter: blur(24px);
+  animation: coronaPulse 8s ease-in-out infinite alternate;
+}
+
+.sun-disc {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #F2E9D8 0%, #D85B32 55%, #8B3416 100%);
+  box-shadow: 0 0 50px rgba(216, 91, 50, 0.35);
+}
+
+.sun-subtleties {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(242, 233, 216, 0.2);
+}
+
+@keyframes coronaPulse {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  100% { transform: scale(1.08); opacity: 1; }
+}
+
+/* Landscape SVG Layers (Proportionally balanced at bottom third) */
+.landscape-svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  object-fit: fill;
+}
+
+.hero-layer-mountains-far {
+  z-index: 3;
+}
+
+.hero-layer-mountains-far .landscape-svg {
+  height: 44%;
+  opacity: 0.88;
+}
+
+/* Layer 3: Mist / Atmospheric Drift Bands */
+.hero-layer-mist {
+  z-index: 4;
+}
+
+.mist-drift {
+  position: absolute;
+  bottom: 12%;
+  left: 0;
+  width: 200%;
+  height: 140px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(138, 155, 114, 0.08) 25%, 
+    rgba(242, 233, 216, 0.12) 50%, 
+    rgba(138, 155, 114, 0.08) 75%, 
+    transparent 100%);
+  filter: blur(20px);
+}
+
+.mist-drift-1 {
+  animation: mistMove1 35s linear infinite;
+}
+
+.mist-drift-2 {
+  bottom: 6%;
+  opacity: 0.65;
+  animation: mistMove2 25s linear infinite reverse;
+}
+
+@keyframes mistMove1 {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes mistMove2 {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.hero-layer-mountains-mid {
+  z-index: 5;
+}
+
+.hero-layer-mountains-mid .landscape-svg {
+  height: 36%;
+}
+
+.hero-layer-forest {
+  z-index: 6;
+}
+
+.hero-layer-forest .landscape-svg {
+  height: 28%;
+}
+
+.hero-layer-foreground {
+  z-index: 7;
+}
+
+.hero-layer-foreground .landscape-svg {
+  height: 20%;
+}
+
+/* Hero Content Wrapper & Editorial Typography */
+.hero-content-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: var(--container-max);
+  height: 100%;
+  padding: clamp(84px, 12vh, 108px) var(--container-pad) clamp(28px, 4vh, 48px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.hero-content-wrapper * {
+  pointer-events: auto;
+}
+
+/* Editorial Top Header Meta */
+.hero-editorial-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.editorial-meta-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: rgba(23, 25, 20, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border-subtle);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+}
+
+.meta-label {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-terracotta);
+  letter-spacing: 0.18em;
+}
+
+.meta-value {
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.14em;
+  color: var(--color-cream-warm);
+}
+
+.hero-altitude-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(23, 25, 20, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border-subtle);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+}
+
+.pulse-indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-lime-acid);
+  box-shadow: 0 0 8px var(--color-lime-acid);
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.badge-text {
+  font-size: 0.72rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.16em;
+  color: var(--color-cream-subtle);
+}
+
+/* Reduced Hero Title by 10-15% with Balanced Spacing */
+.hero-title-container {
+  margin: auto 0;
+  text-align: center;
+  padding: var(--space-xs) 0;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: var(--fw-black);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  color: var(--color-cream-warm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 4px 28px rgba(23, 25, 20, 0.8), 0 1px 4px rgba(23, 25, 20, 0.95);
+  text-wrap: balance;
+}
+
+.title-line {
+  display: block;
+  overflow: visible;
+  font-size: clamp(2.4rem, 6.8vw, 6.8rem); /* ~15% reduction on desktop, bold & cinematic */
+  line-height: 1.04;
+}
+
+.char-span {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  transition: transform 0.3s var(--ease-editorial), color 0.3s;
+}
+
+.char-span:hover {
+  color: var(--color-terracotta);
+  transform: translateY(-6px) scale(1.03);
+}
+
+/* Hero Bottom Grid & CTA */
+.hero-bottom-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  align-items: flex-end;
+  gap: var(--space-xl);
+  width: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(23, 25, 20, 0.4) 100%);
+  padding-top: var(--space-sm);
+}
+
+.hero-subtext-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hero-supporting-text {
+  font-family: var(--font-editorial);
+  font-size: clamp(1.35rem, 2.3vw, 2.05rem);
+  font-style: italic;
+  font-weight: var(--fw-normal);
+  color: var(--color-cream-warm);
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+}
+
+.hero-manifesto-lead {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: var(--lh-body);
+  color: var(--color-cream-subtle);
+  max-width: 560px;
+}
+
+.hero-cta-cluster {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.cta-telemetry {
+  font-size: 0.72rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.18em;
+  color: var(--color-sage);
+  font-family: var(--font-body);
+  font-feature-settings: "tnum";
+}
+
+/* Animated Scroll Indicator */
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.scroll-mouse-pill {
+  width: 22px;
+  height: 36px;
+  border: 1.5px solid rgba(242, 233, 216, 0.45);
+  border-radius: var(--radius-pill);
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.scroll-wheel-dot {
+  width: 3.5px;
+  height: 7px;
+  background-color: var(--color-lime-acid);
+  border-radius: var(--radius-pill);
+  margin-top: 6px;
+  animation: scrollWheelPulse 2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes scrollWheelPulse {
+  0% { transform: translateY(0); opacity: 1; }
+  60% { transform: translateY(12px); opacity: 0; }
+  61% { transform: translateY(0); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.scroll-hint {
+  font-size: 0.65rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.22em;
+  color: var(--color-cream-subtle);
+  text-transform: uppercase;
+}
+
+/* Responsive Breakpoints for Hero */
+@media (max-width: 900px) {
+  .hero-bottom-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .hero-cta-cluster {
+    align-items: flex-start;
+  }
+
+  .hero-scroll-indicator {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-editorial-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .title-line {
+    font-size: clamp(2.4rem, 11vw, 3.6rem);
+  }
+
+  .hero-supporting-text {
+    font-size: 1.25rem;
+  }
+}
